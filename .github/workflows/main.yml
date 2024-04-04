@@ -31,16 +31,17 @@ jobs:
 
       # Run sonar-scanner
       - name: SonarQube Scan
-        run: sonar-scanner \
-          -Dsonar.host.url=$SONAR_URL \
-          -Dsonar.login=$SONAR_TOKEN \
-          -Dsonar.organization=$SONAR_ORGANIZATION \
-          -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-          -Dsonar.sources=src/ \
-          -Dsonar.junit.reportsPath=target/surefire-reports/ \
-          -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-          -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
-          -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/
+        run: |
+          sonar-scanner \
+            -Dsonar.host.url=$SONAR_URL \
+            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.organization=$SONAR_ORGANIZATION \
+            -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+            -Dsonar.sources=src/ \
+            -Dsonar.junit.reportsPath=target/surefire-reports/ \
+            -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
+            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/
 
       # Check the Quality Gate status.
       - name: SonarQube Quality Gate check
